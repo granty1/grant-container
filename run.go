@@ -1,12 +1,12 @@
 package main
 
 import (
-	"github.com/xianlubird/mydocker/container"
-	log "github.com/Sirupsen/logrus"
 	"os"
 	"strings"
-)
 
+	log "github.com/Sirupsen/logrus"
+	"github.com/granty1/mydocker/container"
+)
 
 func Run(tty bool, comArray []string) {
 	parent, writePipe := container.NewParentProcess(tty)

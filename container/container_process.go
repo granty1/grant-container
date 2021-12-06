@@ -1,10 +1,11 @@
 package container
 
 import (
-	log "github.com/Sirupsen/logrus"
 	"os"
 	"os/exec"
 	"syscall"
+
+	log "github.com/Sirupsen/logrus"
 )
 
 func NewParentProcess(tty bool) (*exec.Cmd, *os.File) {
@@ -24,7 +25,7 @@ func NewParentProcess(tty bool) (*exec.Cmd, *os.File) {
 		cmd.Stderr = os.Stderr
 	}
 	cmd.ExtraFiles = []*os.File{readPipe}
-	cmd.Dir = "/root/busybox"
+	cmd.Dir = "/data/grant/busybox"
 	return cmd, writePipe
 }
 

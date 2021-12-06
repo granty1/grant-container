@@ -2,13 +2,14 @@ package container
 
 import (
 	"fmt"
-	log "github.com/Sirupsen/logrus"
 	"io/ioutil"
 	"os"
 	"os/exec"
 	"path/filepath"
 	"strings"
 	"syscall"
+
+	log "github.com/Sirupsen/logrus"
 )
 
 func RunContainerInitProcess() error {
@@ -47,6 +48,7 @@ Init 挂载点
 */
 func setUpMount() {
 	pwd, err := os.Getwd()
+	log.Info("pwd: ", pwd)
 	if err != nil {
 		log.Errorf("Get current location error %v", err)
 		return
@@ -58,7 +60,7 @@ func setUpMount() {
 	defaultMountFlags := syscall.MS_NOEXEC | syscall.MS_NOSUID | syscall.MS_NODEV
 	syscall.Mount("proc", "/proc", "proc", uintptr(defaultMountFlags), "")
 
-	syscall.Mount("tmpfs", "/dev", "tmpfs", syscall.MS_NOSUID|syscall.MS_STRICTATIME, "mode=755")
+	// syscall.Mount("tmpfs", "/dev", "tmpfs", syscall.MS_NOSUID|syscall.MS_STRICTATIME, "mode=755")
 }
 
 func pivotRoot(root string) error {
